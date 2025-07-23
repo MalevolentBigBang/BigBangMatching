@@ -46,7 +46,7 @@ This is how many artists have higher-ranked fics rather than lower-ranked fics. 
 ## Undermatch Weight
 Default = 0
 
-This is a penalty imposed against fics that are only assigned one writer that scales with the number of fics that only have one writer. This parameter can be scaled more heavily, in conjunction with the distribution index, to specifically discourage situations where a fic is only assigned one writer while other fics are assigned two or three writers. May not be necessary in situations where the ratio of writers to artists is closer, or where you have fewer artists than writers. Works well in situations where you have a large amount of artists compared to writers. In this case, set this value to 0.
+This is a penalty imposed against fics that are only assigned one artist that scales with the number of fics that only have one artist. This parameter can be scaled more heavily, in conjunction with the distribution index, to specifically discourage situations where a fic is only assigned one writer while other fics are assigned two or three writers. May not be necessary in situations where the ratio of writers to artists is closer, or where you have fewer artists than writers. Works well in situations where you have a large amount of artists compared to writers. In this case, set this value to 0.
 
 ## Overmatch Weight
 Default = 0
