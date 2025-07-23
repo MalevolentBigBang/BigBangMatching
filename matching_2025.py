@@ -45,10 +45,10 @@ if __name__ == '__main__':
     parser.add_argument("-n", "--NullFics", help = "Fics to exclude from the matching process, with commas separating them (eg. 1,2,3)", required = False, default = "0")
     parser.add_argument("-p", "--Preference", help = "The sort preference toggle; 1 sorts by preference, 0 does not", required = False, default = "1")
     parser.add_argument("-s", "--Shuffle", help = "The shuffle condition; 0 does not shuffle, 1 shuffles all fics for each iteration, and 2 shuffles fics within their order categories for each iteration", required = False, default = "1")
-    parser.add_argument("-d", "--DistributionWeight", help = "How much you would like to weight the distribution parameter of the performance index", required = False, default = "5")
+    parser.add_argument("-d", "--DistributionWeight", help = "How much you would like to weight the distribution parameter of the performance index", required = False, default = "1")
     parser.add_argument("-r", "--RankWeight", help = "How much you would like to weight the rank parameter of the performance index", required = False, default = "1")
-    parser.add_argument("-u", "--UndermatchWeight", help = "How much you would like to weight the undermatch parameter of the performance index", required = False, default = "5")
-    parser.add_argument("-o", "--OvermatchWeight", help = "How much you would like to weight the overmatch parameter of the performance index", required = False, default = "10")
+    parser.add_argument("-u", "--UndermatchWeight", help = "How much you would like to weight the undermatch parameter of the performance index", required = False, default = "0")
+    parser.add_argument("-o", "--OvermatchWeight", help = "How much you would like to weight the overmatch parameter of the performance index", required = False, default = "0")
 
     argument = parser.parse_args()
 
@@ -218,9 +218,9 @@ if __name__ == '__main__':
                 ficI = originalFicsSortedCopy[i] # this is the fic NUMBER
                 ficIdx = originalFicsSortedCopy[i]-1 # this is the fic INDEX
 
-                # if any fic has two or fewer total requests, 
-                # automatically match artists with that fic
-                if countFics[ficI] <= 2:
+                # if any fic has one total request, 
+                # automatically match artist with that fic
+                if countFics[ficI] <= 1:
                     tempFics = firstChoicesCopy+secondChoicesCopy+thirdChoicesCopy+fourthChoicesCopy+fifthChoicesCopy
                     tempArtists = artistIDCopy+artistIDCopy+artistIDCopy+artistIDCopy+artistIDCopy
                     tempRanks = rank1Copy+rank2Copy+rank3Copy+rank4Copy+rank5Copy
