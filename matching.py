@@ -192,9 +192,20 @@ if __name__ == '__main__':
         if shuffleFics == 0:
             originalFicsSortedCopy = originalFicsSorted.copy()
 
-        if shuffleFics == 1: # do a random sorting of the fics each time
+        if shuffleFics == 1: # do a random sorting of the fics each time, but keep fics with only one artist first
             originalFicsSortedCopy = originalFicsSorted.copy()
-            shuffle(originalFicsSortedCopy)
+            ranksA = np.unique(sorta) # find all the number of times someone ranked a fic
+            if ranksA[0] == 1: # if we have fic(s) where only one artist picked them
+                # find the fics ranked more than once
+                tempMask = [i for i, x in enumerate(sorta) if x ~= 1]
+                tempFics = [originalFicsSortedCopy[i] for i in tempMask]
+
+                x = list(enumerate(tempFics))
+                shuffle(x)
+                randI,tempFicsShuffled = zip(*x) # shuffle fics ranked more than once and extract indices
+                originalFicsSortedCopy[tempMask] = tempFicsShuffled # replace fics picked more than once with randomized fics
+            else: # if all fics picked more than once
+                shuffle(originalFicsSortedCopy)
 
         if shuffleFics == 2: # if shuffling fics within their order categories
             originalFicsSortedCopy = originalFicsSorted.copy()
@@ -248,7 +259,7 @@ if __name__ == '__main__':
                         rank4Copy = [rank4Copy[i] for i in popMask]
                         rank5Copy = [rank5Copy[i] for i in popMask]
 
-                    popFics.append(ficI) # we'll remove this fics from the pool later
+                    popFics.append(ficI) # we'll remove this fic from the pool later
                     automatchIndex = 1 # we have automatched, so set this index to 1
 
                 if automatchIndex != 1: # if we did not already automatically match the fic
