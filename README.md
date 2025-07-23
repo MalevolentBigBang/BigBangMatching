@@ -24,7 +24,7 @@ Iterations are the number of runs you wish to use. More iterations may result in
 Null fics are fics that are not part of the matching process (ie, writers who have dropped out). Because this code runs through a list of numbers from 1 to your highest writer ID number, you need to specify which fics it should skip (or the code will assume these fics have not been selected yet and will return NO ARTIST MATCH for those fics).
 
 ## Preference
-Default = 0
+Default = 1
 
 Sort Preference determines whether or not you wish to assign matches based on artist rankings/preferences. 0 ignores all preferences (1st to 5th choice) and just determines if an artist chose a fic at all. 1 takes preference into account. Both parameters do still generate a rank weight that contributes to the performance index, but Preference = 1 specifically takes it into account when matching. Preference = 1 is generally better, but Preference = 0 can be used if your code is having difficulty creating viable matches.
 
