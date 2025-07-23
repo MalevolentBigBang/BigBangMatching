@@ -15,7 +15,7 @@ Details about the parameters you can define when running this code via the comma
 The name of the Excel file with your claims information in it.
 
 ## Fics
-Total number of fics should be your highest writer number that an artist can choose during the matching process.
+Total number of fics. This should be your highest writer number that an artist can choose during the matching process.
 
 ## Iterations
 Iterations are the number of runs you wish to use. More iterations may result in better performance, but not always. I usually use somewhere between 5000 and 10000.
