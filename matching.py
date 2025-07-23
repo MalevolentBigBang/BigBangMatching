@@ -197,7 +197,7 @@ if __name__ == '__main__':
             ranksA = np.unique(sorta) # find all the number of times someone ranked a fic
             if ranksA[0] == 1: # if we have fic(s) where only one artist picked them
                 # find the fics ranked more than once
-                tempMask = [i for i, x in enumerate(sorta) if x ~= 1]
+                tempMask = [i for i, x in enumerate(sorta) if x != 1]
                 tempFics = [originalFicsSortedCopy[i] for i in tempMask]
 
                 x = list(enumerate(tempFics))
