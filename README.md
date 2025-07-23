@@ -3,7 +3,7 @@ Command line-based Python code that takes in an Excel file of artist claims and 
 
 # Usage
 ```
-matching_2025.py [-h] -x EXCEL -f FICS -i ITERATIONS [-n NULLFICS] [-p PREFERENCE] [-s SHUFFLE] [-d DISTRIBUTIONWEIGHT] [-r RANKWEIGHT] [-u UNDERMATCHWEIGHT] [-o OVERMATCHWEIGHT]
+matching.py [-h] -x EXCEL -f FICS -i ITERATIONS [-n NULLFICS] [-p PREFERENCE] [-s SHUFFLE] [-d DISTRIBUTIONWEIGHT] [-r RANKWEIGHT] [-u UNDERMATCHWEIGHT] [-o OVERMATCHWEIGHT]
 ```
 
 # Details about usage and matching process
