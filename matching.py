@@ -413,6 +413,13 @@ if __name__ == '__main__':
         # 2. distribution of artists amongst fics (distribution, lower is better)
 
         performanceIndex = rankWeight*rank + distributionWeight*distribution
+        
+        # heavy auto penalty if there are fewer matched fics than total fics in the first matching column 
+        # (ie if a fic didn't get matched at all) that scales with number of unmatched fics
+        temp = currentArtistIDs.T[0]
+        if len(temp[~np.isnan(temp)]) < len(originalFics):
+            nomatchPenalty = 20 * (len(originalFics) - len(temp[~np.isnan(temp)]))
+            performanceIndex = performanceIndex + nomatchPenalty
 
         # find fics that only have one artist and weight the performance index
         # to penalize these matching configurations
@@ -440,10 +447,15 @@ if __name__ == '__main__':
                         artIdx = [i for i, x in enumerate(artistID) if x == currentArtistIDs[m][k]]
                         currentArtistNames[k][m] = [artistName[i] for i in artIdx]
                     else:
-                        if unrankedMask[i] == 1:
+                        if unrankedMask[m] == 1:
                             currentArtistNames[k][m] = 'NO ARTIST RANKS';
-                        else:
+                        elif finalMatchesFicIDs[m] in nullFics:
                             currentArtistNames[k][m] = '-'
+                        else:
+                            if k == 0:
+                                currentArtistNames[k][m] = 'UNMATCHED'
+                            else:
+                                currentArtistNames[k][m] = '-'
 
             finalMatchesArtistNames = currentArtistNames.copy()
             
@@ -465,8 +477,13 @@ if __name__ == '__main__':
                         else:
                             if unrankedMask[m] == 1:
                                 currentArtistNames[k][m] = 'NO ARTIST RANKS';
-                            else:
+                            elif finalMatchesFicIDs[m] in nullFics:
                                 currentArtistNames[k][m] = '-'
+                            else:
+                                if k == 0:
+                                    currentArtistNames[k][m] = 'UNMATCHED'
+                                else:
+                                    currentArtistNames[k][m] = '-'
 
                 finalMatchesArtistNames = currentArtistNames.copy()
 
